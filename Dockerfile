@@ -1,4 +1,4 @@
-FROM node:21-alpine AS builder
+FROM node:22 AS builder
 
 RUN apk update && \
     apk add git ffmpeg wget curl bash openssl
@@ -21,7 +21,7 @@ RUN npm run db:generate
 
 RUN npm run build
 
-FROM node:21-alpine AS final
+FROM node:22 AS final
 
 RUN apk update && \
     apk add tzdata ffmpeg bash openssl
@@ -46,4 +46,4 @@ ENV DOCKER_ENV=true
 
 EXPOSE 8080
 
-ENTRYPOINT ["/bin/bash", "-c", ". npm run start:prod" ]
+CMD ["npm", "run", "start:prod"]
