@@ -1,4 +1,4 @@
-FROM node:22-alpine AS builder
+FROM node:20-alpine AS builder
 
 RUN apk update && \
     apk add git ffmpeg wget curl bash openssl
@@ -25,7 +25,7 @@ RUN npm run db:generate
 
 RUN npm run build
 
-FROM node:22-alpine AS final
+FROM node:20-alpine AS final
 
 RUN apk update && \
     apk add tzdata ffmpeg bash openssl
