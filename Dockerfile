@@ -1,8 +1,5 @@
 FROM node:22 AS builder
 
-RUN apk update && \
-    apk add git ffmpeg wget curl bash openssl
-
 WORKDIR /evolution
 
 COPY ./package.json ./tsconfig.json ./
@@ -22,9 +19,6 @@ RUN npm run db:generate
 RUN npm run build
 
 FROM node:22 AS final
-
-RUN apk update && \
-    apk add tzdata ffmpeg bash openssl
 
 ENV TZ=America/Sao_Paulo
 
