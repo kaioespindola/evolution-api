@@ -21,6 +21,8 @@ COPY ./Docker ./Docker
 
 RUN chmod +x ./Docker/scripts/* && dos2unix ./Docker/scripts/*
 
+RUN npm run db:generate
+
 RUN npm run build
 
 FROM node:22-alpine AS final
