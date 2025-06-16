@@ -1907,7 +1907,11 @@ export class BaileysStartupService extends ChannelStartupService {
     const jid = createJid(number);
 
     try {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       const call = await this.client.offerCall(jid, isVideo);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       setTimeout(() => this.client.terminateCall(call.id, call.to), callDuration * 1000);
 
       return call;
